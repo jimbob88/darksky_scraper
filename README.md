@@ -1,2 +1,6 @@
 # darksky_scraper
-A python written module for scraping from Dark Sky
+
+## What is darksky_scraper?
+Darksky Scraper is a python module created in the hopes of providing the ability for users to have access to forcasting data from [darksky.net](https://darksky.net/forecast/en) from a simple module.
+
+

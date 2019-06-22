@@ -1,3 +1,5 @@
+import re
+
 configs = {'F/mph': 'us12', 'C/ms': 'si12', 'C/kmh': 'ca12', 'C/mph': 'uk212'}
 
 
@@ -8,7 +10,7 @@ def check_values(forecast_self, latitude, longitude, config_mode, custom_url):
     forecast_self: the self variable from forecast
     latitude (float): The latitude of the point you wish to forcast from
     longitude (float): The longitude of the point you wish to forcast from
-    config_mode (str): The units of the returned dataset, should be in:  ('F/mph', C/ms', 'C/kmh', 'C/mph')
+    config_mode (str): The units of the returned dataset, should be in:  ('F/mph', 'C/ms', 'C/kmh', 'C/mph')
     custom_url (str): A different darknet URL (instead of 'https://darksky.net/forecast/[latitude],[longitude]/[config_mode]/en')
 
     Returns:
@@ -43,7 +45,7 @@ def check_values(forecast_self, latitude, longitude, config_mode, custom_url):
             url = custom_url
     return (latitude, longitude, config_mode, url)
 
-@staticmethod
+
 def validate_url(url):
     """ A function that returns None if url is not valid (requires http(s))
     
