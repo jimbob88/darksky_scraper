@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import re
 import time
-from check_values import *
+from .check_values import *
 try:
     import urllib2.urlopen as urlopen
 except:
