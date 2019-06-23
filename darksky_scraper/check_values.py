@@ -2,7 +2,6 @@ import re
 
 configs = {'F/mph': 'us12', 'C/ms': 'si12', 'C/kmh': 'ca12', 'C/mph': 'uk212'}
 
-
 def check_values(forecast_self, latitude, longitude, config_mode, custom_url):
     """ A function to check if values are valid or are none
 
@@ -10,7 +9,7 @@ def check_values(forecast_self, latitude, longitude, config_mode, custom_url):
     forecast_self: the self variable from forecast
     latitude (float): The latitude of the point you wish to forcast from
     longitude (float): The longitude of the point you wish to forcast from
-    config_mode (str): The units of the returned dataset, should be in:  ('F/mph', 'C/ms', 'C/kmh', 'C/mph')
+    config_mode (str): The units of the returned dataset, should be in:  ('F/mph', C/ms', 'C/kmh', 'C/mph')
     custom_url (str): A different darknet URL (instead of 'https://darksky.net/forecast/[latitude],[longitude]/[config_mode]/en')
 
     Returns:
@@ -23,11 +22,15 @@ def check_values(forecast_self, latitude, longitude, config_mode, custom_url):
             latitude = self.latitude
         else:
             raise ValueError('Latitude needs to be a specified value')
+    if -90 < latitude > 90:
+        raise ValueError('Latitude must be inbetween -90 and 90')
     if longitude is None:
         if hasattr(self, 'longitude'):
             longitude = self.longitude
         else:
             raise ValueError('Longitude needs to be a specified value')
+    if -180 < longitude > 180:
+        raise ValueError('Longitude must be inbetween -180 and 180')
     if config_mode is None:
         if hasattr(self, 'config_mode'):
             config_mode = self.config_mode
