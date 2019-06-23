@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import re
 import time
-import check_values
+from check_values import *
 try:
     import urllib2.urlopen as urlopen
 except:
@@ -23,7 +23,7 @@ class forecast:
         if custom_url is None:
             self.url = f'https://darksky.net/forecast/{latitude},{longitude}/{configs[config_mode]}/en'
         else:
-            if check_values.validate_url(custom_url) is None:
+            if validate_url(custom_url) is None:
                 if custom_url[0:3] != 'http':
                     raise ValueError(f'{custom_url} is not a valid URL - Missing http(s)')
                 else:
@@ -46,7 +46,7 @@ class forecast:
         dict: vals 
             e.g. https://pastebin.com/basQJifK
         """
-        latitude, longitude, config_mode, url = check_values.check_values(self, latitude, longitude, config_mode, custom_url)
+        latitude, longitude, config_mode, url = check_values(self, latitude, longitude, config_mode, custom_url)
         page = urlopen(url)
         soup = BeautifulSoup(page, 'html.parser')
 
@@ -94,7 +94,7 @@ class forecast:
                'high': [value]
               }
         """
-        latitude, longitude, config_mode, url = check_values.check_values(self, latitude, longitude, config_mode, custom_url)
+        latitude, longitude, config_mode, url = check_values(self, latitude, longitude, config_mode, custom_url)
         page = urlopen(url)
         soup = BeautifulSoup(page, 'html.parser')
         temp_dict = {}
@@ -121,7 +121,7 @@ class forecast:
                         'unit': [unit]}
               }
         """
-        latitude, longitude, config_mode, url = check_values.check_values(self, latitude, longitude, config_mode, custom_url)
+        latitude, longitude, config_mode, url = check_values(self, latitude, longitude, config_mode, custom_url)
         page = urlopen(url)
         soup = BeautifulSoup(page, 'html.parser')
         details = {}
@@ -158,7 +158,7 @@ class forecast:
                'weather data': get_curr_stats(Parameters)
                'overtime raw data': get_overtime_raw_data(Parameters)}
         """
-        latitude, longitude, config_mode, url = check_values.check_values(self, latitude, longitude, config_mode, custom_url)
+        latitude, longitude, config_mode, url = check_values(self, latitude, longitude, config_mode, custom_url)
         print(latitude, longitude, config_mode, url)
         return {'temperatures': self.get_curr_temps(latitude, longitude, config_mode, url), 
                 'weather data': self.get_curr_stats(latitude, longitude, config_mode, url), 
