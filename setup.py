@@ -13,7 +13,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding
     long_description = f.read()
 
 setup(name='darksky_scraper',
-      version='0.2.1',
+      version='0.2.3',
       description="""A simple scraper for darksky.net.""",
       url='https://github.com/jimbob88/darksky_scraper',
       author='James Blackburn',
